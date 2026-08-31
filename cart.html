@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Your Cart | Nexus Mart BD</title>
+
+<style>
+
+:root {
+    --bg: #080909;
+    --card: #101112;
+    --border: #242526;
+    --orange: #ff5a1f;
+    --orange-dark: #e84b16;
+    --white: #ffffff;
+    --text: #e7e7e7;
+    --muted: #777;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+header {
+    border-bottom: 1px solid var(--border);
+    background: #0d0e0f;
+}
+
+.navbar {
+    max-width: 1200px;
+    height: 75px;
+    margin: auto;
+    padding: 0 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    color: white;
+    font-weight: 900;
+    font-size: 17px;
+}
+
+.brand span {
+    color: var(--orange);
+}
+
+.back {
+    color: #888;
+    font-size: 12px;
+}
+
+h1 {
+    color: white;
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+
+.cart-box {
+    border: 1px solid var(--border);
+    background: var(--card);
+}
+
+.cart-item {
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.item-info h3 {
+    color: white;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.item-info p {
+    color: #666;
+    font-size: 11px;
+}
+
+.item-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.quantity button {
+    width: 28px;
+    height: 28px;
+
+    border: 1px solid #333;
+    background: #181919;
+    color: white;
+    cursor: pointer;
+}
+
+.quantity span {
+    min-width: 20px;
+    text-align: center;
+}
+
+.price {
+    color: white;
+    font-weight: 900;
+}
+
+.remove {
+    border: none;
+    background: transparent;
+    color: #777;
+    cursor: pointer;
+}
+
+.remove:hover {
+    color: var(--orange);
+}
+
+.cart-summary {
+    padding: 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-label {
+    color: #777;
+    font-size: 12px;
+}
+
+.total {
+    color: var(--orange);
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.checkout {
+    border: none;
+    background: var(--orange);
+    color: white;
+
+    padding: 13px 22px;
+
+    border-radius: 5px;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+.checkout:hover {
+    background: var(--orange-dark);
+}
+
+.empty {
+    padding: 60px;
+    text-align: center;
+    color: #666;
+}
+
+@media(max-width:600px) {
+
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .item-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .cart-summary {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<nav class="navbar">
+
+<a href="index.html" class="brand">
+Nexus  <span>Mart BD</span>
+</a>
+
+<a href="index.html" class="back">
+← Continue Shopping
+</a>
+
+</nav>
+
+</header>
+
+
+<main class="container">
+
+<h1>Your Cart</h1>
+
+<div id="cartContainer"></div>
+
+</main>
+
+
+<script>
+
+let cart =
+JSON.parse(localStorage.getItem("cart")) || [];
+
+
+function saveCart() {
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+}
+
+
+function renderCart() {
+
+    const container =
+        document.getElementById("cartContainer");
+
+
+    if (cart.length === 0) {
+
+        container.innerHTML = `
+            <div class="cart-box">
+                <div class="empty">
+                    Your cart is empty.<br><br>
+                    <a href="index.html" style="color:#ff5a1f;">
+                        Browse Products →
+                    </a>
+                </div>
+            </div>
+        `;
+
+        return;
+    }
+
+
+    let total = 0;
+
+    let html = `
+        <div class="cart-box">
+    `;
+
+
+    cart.forEach((item, index) => {
+
+        const itemTotal =
+            item.price * item.quantity;
+
+        total += itemTotal;
+
+
+        html += `
+
+            <div class="cart-item">
+
+                <div class="item-info">
+
+                    <h3>
+                        ${escapeHTML(item.name)}
+                    </h3>
+
+                    <p>
+                        Product ID: ${escapeHTML(item.id)}
+                    </p>
+
+                </div>
+
+
+                <div class="item-right">
+
+                    <div class="quantity">
+
+                        <button
+                            onclick="changeQuantity(${index}, -1)"
+                        >
+                            −
+                        </button>
+
+                        <span>
+                            ${item.quantity}
+                        </span>
+
+                        <button
+                            onclick="changeQuantity(${index}, 1)"
+                        >
+                            +
+                        </button>
+
+                    </div>
+
+
+                    <div class="price">
+                        ৳${itemTotal}
+                    </div>
+
+
+                    <button
+                        class="remove"
+                        onclick="removeItem(${index})"
+                    >
+                        Remove
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+
+    html += `
+
+        <div class="cart-summary">
+
+            <div>
+
+                <div class="total-label">
+                    TOTAL
+                </div>
+
+                <div class="total">
+                    ৳${total}
+                </div>
+
+            </div>
+
+
+            <button
+                class="checkout"
+                onclick="goToCheckout()"
+            >
+                PROCEED TO CHECKOUT →
+            </button>
+
+        </div>
+
+    </div>
+
+    `;
+
+
+    container.innerHTML = html;
+
+}
+
+
+function changeQuantity(index, change) {
+
+    cart[index].quantity += change;
+
+
+    if (cart[index].quantity <= 0) {
+
+        cart.splice(index, 1);
+
+    }
+
+
+    saveCart();
+
+    renderCart();
+
+}
+
+
+function removeItem(index) {
+
+    cart.splice(index, 1);
+
+    saveCart();
+
+    renderCart();
+
+}
+
+
+function goToCheckout() {
+
+    if (cart.length === 0) {
+
+        alert("Your cart is empty.");
+
+        return;
+
+    }
+
+    window.location.href =
+        "checkout.html";
+
+}
+
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+renderCart();
+
+</script>
+
+</body>
+
+</html>

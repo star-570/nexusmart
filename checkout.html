@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Checkout | Auron Digital</title>
+
+<style>
+
+:root {
+    --bg:#080909;
+    --card:#101112;
+    --border:#242526;
+    --orange:#ff5a1f;
+    --orange-dark:#e84b16;
+    --text:#e7e7e7;
+}
+
+* {
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body {
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+}
+
+header {
+    height:75px;
+    border-bottom:1px solid var(--border);
+    background:#0d0e0f;
+}
+
+.navbar {
+    max-width:1100px;
+    height:100%;
+    margin:auto;
+    padding:0 20px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo {
+    color:white;
+    font-weight:900;
+}
+
+.logo span {
+    color:var(--orange);
+}
+
+.back {
+    color:#777;
+    font-size:12px;
+}
+
+.container {
+    max-width:1000px;
+    margin:auto;
+    padding:45px 20px;
+}
+
+h1 {
+    color:white;
+    font-size:32px;
+    margin-bottom:30px;
+}
+
+.checkout-grid {
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:20px;
+}
+
+.box {
+    background:var(--card);
+    border:1px solid var(--border);
+    padding:25px;
+}
+
+.box h2 {
+    color:white;
+    font-size:17px;
+    margin-bottom:20px;
+}
+
+label {
+    display:block;
+    color:#999;
+    font-size:11px;
+    font-weight:700;
+    margin-bottom:7px;
+}
+
+input {
+    width:100%;
+    padding:13px;
+
+    margin-bottom:18px;
+
+    background:#0a0b0b;
+
+    border:1px solid #303030;
+
+    color:white;
+
+    border-radius:4px;
+
+    outline:none;
+}
+
+input:focus {
+    border-color:var(--orange);
+}
+
+.order-item {
+    padding:12px 0;
+    border-bottom:1px solid #222;
+
+    display:flex;
+    justify-content:space-between;
+
+    font-size:12px;
+}
+
+.order-item span:first-child {
+    color:#aaa;
+}
+
+.order-item span:last-child {
+    color:white;
+    font-weight:700;
+}
+
+.total-row {
+    margin-top:20px;
+
+    display:flex;
+    justify-content:space-between;
+}
+
+.total {
+    color:var(--orange);
+    font-size:24px;
+    font-weight:900;
+}
+
+.submit {
+    width:100%;
+
+    margin-top:15px;
+
+    padding:14px;
+
+    border:none;
+
+    background:var(--orange);
+
+    color:white;
+
+    font-size:12px;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+    border-radius:4px;
+}
+
+.submit:hover {
+    background:var(--orange-dark);
+}
+
+.note {
+    margin-top:15px;
+
+    color:#666;
+
+    font-size:10px;
+
+    line-height:1.6;
+}
+
+@media(max-width:700px) {
+
+    .checkout-grid {
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<nav class="navbar">
+
+<div class="logo">
+AURON <span>DIGITAL</span>
+</div>
+
+<a href="cart.html" class="back">
+← Back to Cart
+</a>
+
+</nav>
+
+</header>
+
+
+<main class="container">
+
+<h1>Checkout</h1>
+
+
+<div class="checkout-grid">
+
+
+<!-- CUSTOMER -->
+
+<div class="box">
+
+<h2>Customer Information</h2>
+
+
+<form id="checkoutForm">
+
+
+<label>
+Full Name *
+</label>
+
+<input
+    type="text"
+    id="customerName"
+    required
+    placeholder="Your full name"
+>
+
+
+<label>
+WhatsApp Number *
+</label>
+
+<input
+    type="tel"
+    id="whatsapp"
+    required
+    placeholder="+8801XXXXXXXXX"
+>
+
+
+<label>
+Email Address *
+</label>
+
+<input
+    type="email"
+    id="email"
+    required
+    placeholder="you@example.com"
+>
+
+
+<button
+    type="submit"
+    class="submit"
+>
+    PLACE ORDER →
+</button>
+
+
+</form>
+
+</div>
+
+
+
+<!-- ORDER SUMMARY -->
+
+<div class="box">
+
+<h2>Order Summary</h2>
+
+<div id="orderItems"></div>
+
+<div class="total-row">
+
+<span>
+Total
+</span>
+
+<span
+    class="total"
+    id="total"
+>
+৳0
+</span>
+
+</div>
+
+<p class="note">
+
+After placing your order, you will receive
+payment instructions and an order ID.
+
+You can then send your payment information
+through WhatsApp for verification.
+
+</p>
+
+</div>
+
+
+</div>
+
+</main>
+
+
+<script>
+
+const cart =
+JSON.parse(localStorage.getItem("cart")) || [];
+
+
+if (cart.length === 0) {
+
+    window.location.href = "cart.html";
+
+}
+
+
+let total = 0;
+
+
+const orderItems =
+document.getElementById("orderItems");
+
+
+cart.forEach(item => {
+
+    const itemTotal =
+        item.price * item.quantity;
+
+    total += itemTotal;
+
+
+    orderItems.innerHTML += `
+
+        <div class="order-item">
+
+            <span>
+                ${escapeHTML(item.name)}
+                × ${item.quantity}
+            </span>
+
+            <span>
+                ৳${itemTotal}
+            </span>
+
+        </div>
+
+    `;
+
+});
+
+
+document.getElementById("total")
+    .textContent = "৳" + total;
+
+
+
+document
+.getElementById("checkoutForm")
+.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+
+    const customerName =
+        document
+        .getElementById("customerName")
+        .value
+        .trim();
+
+
+    const whatsapp =
+        document
+        .getElementById("whatsapp")
+        .value
+        .trim();
+
+
+    const email =
+        document
+        .getElementById("email")
+        .value
+        .trim();
+
+
+    if (!customerName ||
+        !whatsapp ||
+        !email) {
+
+        alert(
+            "Please complete all required fields."
+        );
+
+        return;
+
+    }
+
+
+    const orderID =
+        "AV-" +
+        new Date()
+        .toISOString()
+        .replace(/\D/g,"")
+        .slice(0,14);
+
+
+    const order = {
+
+        orderID: orderID,
+
+        customerName: customerName,
+
+        whatsapp: whatsapp,
+
+        email: email,
+
+        products: cart,
+
+        total: total,
+
+        paymentStatus: "PENDING",
+
+        deliveryStatus: "NOT DELIVERED",
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+
+    localStorage.setItem(
+        "lastOrder",
+        JSON.stringify(order)
+    );
+
+
+    /*
+       IMPORTANT:
+
+       Later we will send this order
+       to Google Apps Script / Google Sheets.
+
+    */
+
+
+    window.location.href =
+        "order-success.html";
+
+});
+
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+</script>
+
+</body>
+
+</html>

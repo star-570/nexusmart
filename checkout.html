@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Checkout | Auron Digital</title>
+<title>Checkout | Nexus Mart BD</title>
 
 <style>
 
@@ -60,6 +60,11 @@ header {
 .back {
     color:#777;
     font-size:12px;
+    text-decoration:none;
+}
+
+.back:hover {
+    color:var(--orange);
 }
 
 .container {
@@ -145,6 +150,7 @@ input:focus {
 
     display:flex;
     justify-content:space-between;
+    align-items:center;
 }
 
 .total {
@@ -179,8 +185,13 @@ input:focus {
     background:var(--orange-dark);
 }
 
+
+/* PAYMENT INSTRUCTIONS */
+
 .note {
-    margin-top:15px;
+    margin-top:25px;
+
+    padding-top:5px;
 
     color:#666;
 
@@ -189,10 +200,82 @@ input:focus {
     line-height:1.6;
 }
 
+.note p {
+    margin-bottom:15px;
+}
+
+.note p:last-child {
+    margin-bottom:0;
+}
+
+.note strong {
+    color:white;
+}
+
+
+/* ASSISTANCE SECTION */
+
+.assistance {
+    margin-top:25px;
+
+    padding-top:18px;
+
+    border-top:1px solid #242526;
+
+    text-align:center;
+}
+
+.assistance-title {
+    color:white;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    margin-bottom:7px;
+}
+
+.assistance-text {
+    color:#666;
+
+    font-size:10px;
+
+    line-height:1.6;
+}
+
+.assistance-whatsapp {
+    display:inline-block;
+
+    margin-top:8px;
+
+    color:var(--orange);
+
+    font-size:10px;
+
+    font-weight:700;
+
+    text-decoration:none;
+}
+
+.assistance-whatsapp:hover {
+    color:white;
+}
+
+
+/* MOBILE */
+
 @media(max-width:700px) {
 
     .checkout-grid {
         grid-template-columns:1fr;
+    }
+
+    .container {
+        padding:30px 15px;
+    }
+
+    h1 {
+        font-size:28px;
     }
 
 }
@@ -203,12 +286,13 @@ input:focus {
 
 <body>
 
+
 <header>
 
 <nav class="navbar">
 
 <div class="logo">
-AURON <span>DIGITAL</span>
+Nexus Mart <span>BD</span>
 </div>
 
 <a href="cart.html" class="back">
@@ -222,17 +306,21 @@ AURON <span>DIGITAL</span>
 
 <main class="container">
 
-<h1>Checkout</h1>
+<h1>
+Checkout
+</h1>
 
 
 <div class="checkout-grid">
 
 
-<!-- CUSTOMER -->
+<!-- CUSTOMER INFORMATION -->
 
 <div class="box">
 
-<h2>Customer Information</h2>
+<h2>
+Customer Information
+</h2>
 
 
 <form id="checkoutForm">
@@ -292,9 +380,13 @@ Email Address *
 
 <div class="box">
 
-<h2>Order Summary</h2>
+<h2>
+Order Summary
+</h2>
+
 
 <div id="orderItems"></div>
+
 
 <div class="total-row">
 
@@ -311,15 +403,98 @@ Total
 
 </div>
 
-<p class="note">
 
-After placing your order, you will receive
-payment instructions and an order ID.
+<!-- PAYMENT INSTRUCTIONS -->
 
-You can then send your payment information
-through WhatsApp for verification.
+<div class="note">
 
-</p>
+
+    <p>
+
+        <strong>
+            1. Place Your Order
+        </strong>
+
+        <br>
+
+        After placing your order, you will receive your
+        Order ID and payment instructions.
+
+    </p>
+
+
+    <p>
+
+        <strong>
+            2. Make Payment (Must do Send Money)
+        </strong>
+
+        <br>
+
+        Complete the payment through bKash (Send Money)
+        only to
+
+        <strong>
+            +880 1760 506160
+        </strong>.
+
+    </p>
+
+
+    <p>
+
+        <strong>
+            3. Send Payment Proof
+        </strong>
+
+        <br>
+
+        Take a screenshot of the successful payment and
+        send it along with your Order ID through WhatsApp.
+
+    </p>
+
+
+    <p>
+
+        <strong>
+            4. Payment Verification
+        </strong>
+
+        <br>
+
+        Our team will verify your payment and process
+        your order accordingly.
+
+    </p>
+
+
+</div>
+
+
+<!-- ASSISTANCE -->
+
+<div class="assistance">
+
+    <div class="assistance-title">
+        Need Any Assistance?
+    </div>
+
+    <div class="assistance-text">
+        For any assistance regarding your order or payment,
+        please contact us on WhatsApp.
+    </div>
+
+    <a
+        href="https://wa.me/8801980911875"
+        target="_blank"
+        class="assistance-whatsapp"
+    >
+        Contact Us on WhatsApp →
+    </a>
+
+</div>
+
 
 </div>
 
@@ -329,7 +504,13 @@ through WhatsApp for verification.
 </main>
 
 
+
 <script>
+
+
+/*
+   GET CART
+*/
 
 const cart =
 JSON.parse(localStorage.getItem("cart")) || [];
@@ -337,7 +518,8 @@ JSON.parse(localStorage.getItem("cart")) || [];
 
 if (cart.length === 0) {
 
-    window.location.href = "cart.html";
+    window.location.href =
+        "cart.html";
 
 }
 
@@ -348,6 +530,11 @@ let total = 0;
 const orderItems =
 document.getElementById("orderItems");
 
+
+
+/*
+   DISPLAY CART ITEMS
+*/
 
 cart.forEach(item => {
 
@@ -377,10 +564,20 @@ cart.forEach(item => {
 });
 
 
+
+/*
+   DISPLAY TOTAL
+*/
+
 document.getElementById("total")
-    .textContent = "৳" + total;
+    .textContent =
+        "৳" + total;
 
 
+
+/*
+   PLACE ORDER
+*/
 
 document
 .getElementById("checkoutForm")
@@ -410,9 +607,16 @@ document
         .trim();
 
 
-    if (!customerName ||
+
+    /*
+       VALIDATE FORM
+    */
+
+    if (
+        !customerName ||
         !whatsapp ||
-        !email) {
+        !email
+    ) {
 
         alert(
             "Please complete all required fields."
@@ -423,6 +627,11 @@ document
     }
 
 
+
+    /*
+       GENERATE ORDER ID
+    */
+
     const orderID =
         "AV-" +
         new Date()
@@ -430,6 +639,11 @@ document
         .replace(/\D/g,"")
         .slice(0,14);
 
+
+
+    /*
+       CREATE ORDER OBJECT
+    */
 
     const order = {
 
@@ -455,20 +669,22 @@ document
     };
 
 
+
+    /*
+       SAVE ORDER
+    */
+
     localStorage.setItem(
         "lastOrder",
         JSON.stringify(order)
     );
 
 
+
     /*
-       IMPORTANT:
-
-       Later we will send this order
-       to Google Apps Script / Google Sheets.
-
+       REDIRECT TO
+       ORDER CONFIRMATION
     */
-
 
     window.location.href =
         "order-success.html";
@@ -476,18 +692,29 @@ document
 });
 
 
+
+/*
+   ESCAPE HTML
+*/
+
 function escapeHTML(value) {
 
     return String(value)
+
         .replace(/&/g,"&amp;")
+
         .replace(/</g,"&lt;")
+
         .replace(/>/g,"&gt;")
+
         .replace(/"/g,"&quot;")
+
         .replace(/'/g,"&#039;");
 
 }
 
 </script>
+
 
 </body>
 

@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Order Confirmation | Auron Digital</title>
+<title>Order Confirmation | Nexus Mart BD</title>
 
 <style>
 
@@ -176,7 +176,7 @@ h1 {
 .instructions {
     margin-top:25px;
 
-    padding:15px;
+    padding:18px;
 
     background:#0b0c0c;
 
@@ -191,96 +191,138 @@ h1 {
     line-height:1.7;
 }
 
+.instructions p {
+    margin-bottom:15px;
+}
+
+.instructions p:last-child {
+    margin-bottom:0;
+}
+
+.instructions strong {
+    color:white;
+}
+
+
+/* MOBILE */
+
+@media(max-width:600px) {
+
+    body {
+        padding:15px;
+    }
+
+    .box {
+        padding:25px 20px;
+    }
+
+    .detail-row {
+        gap:15px;
+    }
+
+    .detail-row span:last-child {
+        text-align:right;
+        word-break:break-word;
+    }
+
+}
+
 </style>
 
 </head>
 
 <body>
 
+
 <div class="box">
 
+
+<!-- SUCCESS ICON -->
+
 <div class="check">
-✓
+    ✓
 </div>
 
 
+<!-- TITLE -->
+
 <h1>
-Order Received
+    Order Received
 </h1>
 
 <p class="subtitle">
-Your order has been successfully created.
+    Your order has been successfully created.
 </p>
 
 
+<!-- ORDER ID -->
+
 <div class="order-id">
 
-<small>
-Order ID
-</small>
+    <small>
+        Order ID
+    </small>
 
-<strong id="orderID">
-AV-000000
-</strong>
+    <strong id="orderID">
+        AV-000000
+    </strong>
 
 </div>
 
+
+<!-- ORDER DETAILS -->
 
 <div class="details">
 
-<div class="detail-row">
 
-<span>
-Customer
-</span>
+    <div class="detail-row">
 
-<span id="customerName">
--
-</span>
+        <span>
+            Customer
+        </span>
 
-</div>
+        <span id="customerName">
+            -
+        </span>
 
-
-<div class="detail-row">
-
-<span>
-WhatsApp
-</span>
-
-<span id="whatsapp">
--
-</span>
-
-</div>
+    </div>
 
 
-<div class="detail-row">
+    <div class="detail-row">
 
-<span>
-Total
-</span>
+        <span>
+            WhatsApp
+        </span>
 
-<span id="total">
--
-</span>
+        <span id="whatsapp">
+            -
+        </span>
 
-</div>
+    </div>
 
 
-<div class="detail-row">
+    <div class="detail-row">
 
-<span>
-Payment
-</span>
+        <span>
+            Total
+        </span>
 
-<span>
-PENDING
-</span>
+        <span id="total">
+            -
+        </span>
+
+    </div>
+
+
+    <div class="detail-row">
+
+    </div>
+
 
 </div>
 
-</div>
 
+<!-- WHATSAPP BUTTON -->
 
 <a
     href="#"
@@ -292,41 +334,103 @@ PENDING
 </a>
 
 
+<!-- HOME -->
+
 <a
     href="index.html"
     class="home"
 >
-    ← Return to Auron Digital
+    ← Return to Nexus Mart BD
 </a>
 
 
+<!-- PAYMENT INSTRUCTIONS -->
+
 <div class="instructions">
 
-<strong style="color:white;">
-Next step:
-</strong>
 
-<br>
+    <p>
 
-Make your payment using the payment method
-provided by Auron Digital, then send your
-payment transaction ID through WhatsApp.
+        <strong>
+            1. Check Your Order
+        </strong>
 
-Your digital product will be delivered after
-payment verification.
+        <br>
+
+        Your order has been successfully created.
+        Please keep your Order ID for reference.
+
+    </p>
+
+
+    <p>
+
+        <strong>
+            2. Make Payment
+        </strong>
+
+        <br>
+
+        Complete the payment through bKash (Send Money) to
+
+        <strong>
+            +880 1760 506160
+        </strong>.
+
+    </p>
+
+
+    <p>
+
+        <strong>
+            3. Send Payment Proof
+        </strong>
+
+        <br>
+
+        Take a screenshot of the successful payment
+        and send it along with your Order ID through WhatsApp.
+
+    </p>
+
+
+    <p>
+
+        <strong>
+            4. Payment Verification
+        </strong>
+
+        <br>
+
+        Our team will verify your payment.
+        Your product will be delivered
+        after successful payment verification.
+
+    </p>
+
 
 </div>
+
 
 </div>
 
 
 <script>
 
+
+/*
+   GET LAST ORDER
+*/
+
 const order =
 JSON.parse(
     localStorage.getItem("lastOrder")
 );
 
+
+/*
+   IF NO ORDER EXISTS
+*/
 
 if (!order) {
 
@@ -335,6 +439,10 @@ if (!order) {
 
 }
 
+
+/*
+   DISPLAY ORDER INFORMATION
+*/
 
 document.getElementById("orderID")
     .textContent = order.orderID;
@@ -349,23 +457,31 @@ document.getElementById("whatsapp")
 
 
 document.getElementById("total")
-    .textContent = "৳" + order.total;
+    .textContent =
+        "৳" + order.total;
 
 
 
 /*
-   CHANGE THIS NUMBER TO
-   YOUR AURON DIGITAL WHATSAPP NUMBER.
+   YOUR NEXUS MART BD
+   WHATSAPP NUMBER
 
-   Example:
-   8801712345678
+   International format:
+   880 + number
+   No +, spaces or dashes
 */
 
 const YOUR_WHATSAPP =
-    "8801XXXXXXXXX";
+    "8801980911875";
 
+
+
+/*
+   CREATE PRODUCT LIST
+*/
 
 let productList = "";
+
 
 order.products.forEach(item => {
 
@@ -373,29 +489,41 @@ order.products.forEach(item => {
         item.name +
         " x " +
         item.quantity +
-        "\\n";
+        "\n";
 
 });
 
 
+
+/*
+   WHATSAPP MESSAGE
+*/
+
 const message =
-`Hello Auron Digital,
+`Hello,
 
 I have placed an order.
 
 Order ID: ${order.orderID}
+
+Customer: ${order.customerName}
 
 Products:
 ${productList}
 
 Total: ৳${order.total}
 
-I have completed the payment.
+I have completed the bKash payment.
 
 Please verify my payment.
 
 Thank you.`;
 
+
+
+/*
+   CREATE WHATSAPP URL
+*/
 
 const whatsappURL =
     "https://wa.me/" +
@@ -404,6 +532,11 @@ const whatsappURL =
     encodeURIComponent(message);
 
 
+
+/*
+   CONNECT WHATSAPP BUTTON
+*/
+
 document.getElementById(
     "whatsappButton"
 ).href = whatsappURL;
@@ -411,12 +544,15 @@ document.getElementById(
 
 
 /*
-   Clear cart after successful order.
+   CLEAR CART
+   AFTER SUCCESSFUL ORDER
 */
 
 localStorage.removeItem("cart");
 
+
 </script>
+
 
 </body>
 

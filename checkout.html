@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Checkout | Nexus Mart BD</title>
 
 <style>
-
 :root {
     --bg:#080909;
     --card:#101112;
@@ -42,7 +38,6 @@ header {
     height:100%;
     margin:auto;
     padding:0 20px;
-
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -108,17 +103,11 @@ label {
 input {
     width:100%;
     padding:13px;
-
     margin-bottom:18px;
-
     background:#0a0b0b;
-
     border:1px solid #303030;
-
     color:white;
-
     border-radius:4px;
-
     outline:none;
 }
 
@@ -126,13 +115,15 @@ input:focus {
     border-color:var(--orange);
 }
 
+input::placeholder {
+    color:#555;
+}
+
 .order-item {
     padding:12px 0;
     border-bottom:1px solid #222;
-
     display:flex;
     justify-content:space-between;
-
     font-size:12px;
 }
 
@@ -147,7 +138,6 @@ input:focus {
 
 .total-row {
     margin-top:20px;
-
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -161,23 +151,14 @@ input:focus {
 
 .submit {
     width:100%;
-
     margin-top:15px;
-
     padding:14px;
-
     border:none;
-
     background:var(--orange);
-
     color:white;
-
     font-size:12px;
-
     font-weight:900;
-
     cursor:pointer;
-
     border-radius:4px;
 }
 
@@ -185,18 +166,47 @@ input:focus {
     background:var(--orange-dark);
 }
 
+/* BKASH PAYMENT BOX */
+
+.bkash-payment {
+    margin-top:15px;
+    padding:12px 15px;
+    border:1px solid #303030;
+    background:#0a0b0b;
+    border-radius:4px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.bkash-payment-text {
+    color:#999;
+    font-size:11px;
+    font-weight:700;
+}
+
+.bkash-payment-text strong {
+    display:block;
+    color:white;
+    font-size:12px;
+    margin-bottom:4px;
+}
+
+.bkash-logo {
+    width:55px;
+    height:55px;
+    object-fit:contain;
+    flex-shrink:0;
+}
 
 /* PAYMENT INSTRUCTIONS */
 
 .note {
     margin-top:25px;
-
     padding-top:5px;
-
     color:#666;
-
     font-size:10px;
-
     line-height:1.6;
 }
 
@@ -212,48 +222,34 @@ input:focus {
     color:white;
 }
 
-
 /* ASSISTANCE SECTION */
 
 .assistance {
     margin-top:25px;
-
     padding-top:18px;
-
     border-top:1px solid #242526;
-
     text-align:center;
 }
 
 .assistance-title {
     color:white;
-
     font-size:11px;
-
     font-weight:700;
-
     margin-bottom:7px;
 }
 
 .assistance-text {
     color:#666;
-
     font-size:10px;
-
     line-height:1.6;
 }
 
 .assistance-whatsapp {
     display:inline-block;
-
     margin-top:8px;
-
     color:var(--orange);
-
     font-size:10px;
-
     font-weight:700;
-
     text-decoration:none;
 }
 
@@ -261,11 +257,9 @@ input:focus {
     color:white;
 }
 
-
 /* MOBILE */
 
 @media(max-width:700px) {
-
     .checkout-grid {
         grid-template-columns:1fr;
     }
@@ -278,17 +272,25 @@ input:focus {
         font-size:28px;
     }
 
+    .box {
+        padding:20px;
+    }
+
+    .bkash-payment {
+        padding:10px 12px;
+    }
+
+    .bkash-logo {
+        width:50px;
+        height:50px;
+    }
 }
-
 </style>
-
 </head>
 
 <body>
 
-
 <header>
-
 <nav class="navbar">
 
 <div class="logo">
@@ -300,35 +302,23 @@ Nexus Mart <span>BD</span>
 </a>
 
 </nav>
-
 </header>
-
 
 <main class="container">
 
-<h1>
-Checkout
-</h1>
-
+<h1>Checkout</h1>
 
 <div class="checkout-grid">
-
 
 <!-- CUSTOMER INFORMATION -->
 
 <div class="box">
 
-<h2>
-Customer Information
-</h2>
-
+<h2>Customer Information</h2>
 
 <form id="checkoutForm">
 
-
-<label>
-Full Name *
-</label>
+<label>Full Name *</label>
 
 <input
     type="text"
@@ -337,10 +327,7 @@ Full Name *
     placeholder="Your full name"
 >
 
-
-<label>
-WhatsApp Number *
-</label>
+<label>WhatsApp Number *</label>
 
 <input
     type="tel"
@@ -349,10 +336,7 @@ WhatsApp Number *
     placeholder="+8801XXXXXXXXX"
 >
 
-
-<label>
-Email Address *
-</label>
+<label>Email Address *</label>
 
 <input
     type="email"
@@ -361,7 +345,6 @@ Email Address *
     placeholder="you@example.com"
 >
 
-
 <button
     type="submit"
     class="submit"
@@ -369,180 +352,132 @@ Email Address *
     PLACE ORDER →
 </button>
 
+<!-- BKASH PAYMENT -->
+
+<div class="bkash-payment">
+
+    <div class="bkash-payment-text">
+        <strong>Payment through bKash</strong>
+        Secure payment via bKash
+    </div>
+
+    <img
+        src="bkash.webp"
+        alt="bKash"
+        class="bkash-logo"
+    >
+
+</div>
 
 </form>
 
 </div>
 
-
-
 <!-- ORDER SUMMARY -->
 
 <div class="box">
 
-<h2>
-Order Summary
-</h2>
-
+<h2>Order Summary</h2>
 
 <div id="orderItems"></div>
 
-
 <div class="total-row">
 
-<span>
-Total
-</span>
+<span>Total</span>
 
-<span
-    class="total"
-    id="total"
->
-৳0
-</span>
+<span class="total" id="total">৳0</span>
 
 </div>
-
 
 <!-- PAYMENT INSTRUCTIONS -->
 
 <div class="note">
 
+<p>
+<strong>1. Place Your Order</strong>
+<br>
+After placing your order, you will receive your
+Order ID and payment instructions.
+</p>
 
-    <p>
+<p>
+<strong>2. Make Payment (Must do Send Money)</strong>
+<br>
+Complete the payment through bKash (Send Money)
+only to
+<strong>+880 1760 506160</strong>.
+</p>
 
-        <strong>
-            1. Place Your Order
-        </strong>
+<p>
+<strong>3. Send Payment Proof</strong>
+<br>
+Take a screenshot of the successful payment and
+send it along with your Order ID through WhatsApp.
+</p>
 
-        <br>
-
-        After placing your order, you will receive your
-        Order ID and payment instructions.
-
-    </p>
-
-
-    <p>
-
-        <strong>
-            2. Make Payment (Must do Send Money)
-        </strong>
-
-        <br>
-
-        Complete the payment through bKash (Send Money)
-        only to
-
-        <strong>
-            +880 1760 506160
-        </strong>.
-
-    </p>
-
-
-    <p>
-
-        <strong>
-            3. Send Payment Proof
-        </strong>
-
-        <br>
-
-        Take a screenshot of the successful payment and
-        send it along with your Order ID through WhatsApp.
-
-    </p>
-
-
-    <p>
-
-        <strong>
-            4. Payment Verification
-        </strong>
-
-        <br>
-
-        Our team will verify your payment and process
-        your order accordingly.
-
-    </p>
-
+<p>
+<strong>4. Payment Verification</strong>
+<br>
+Our team will verify your payment and process
+your order accordingly.
+</p>
 
 </div>
-
 
 <!-- ASSISTANCE -->
 
 <div class="assistance">
 
-    <div class="assistance-title">
-        Need Any Assistance?
-    </div>
+<div class="assistance-title">
+Need Any Assistance?
+</div>
 
-    <div class="assistance-text">
-        For any assistance regarding your order or payment,
-        please contact us on WhatsApp.
-    </div>
+<div class="assistance-text">
+For any assistance regarding your order or payment,
+please contact us on WhatsApp.
+</div>
 
-    <a
-        href="https://wa.me/8801980911875"
-        target="_blank"
-        class="assistance-whatsapp"
-    >
-        Contact Us on WhatsApp →
-    </a>
+<a
+    href="https://wa.me/8801980911875"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="assistance-whatsapp"
+>
+    Contact Us on WhatsApp →
+</a>
 
 </div>
 
-
 </div>
-
 
 </div>
 
 </main>
 
-
-
 <script>
 
-
-/*
-   GET CART
-*/
+/* GET CART */
 
 const cart =
 JSON.parse(localStorage.getItem("cart")) || [];
 
-
 if (cart.length === 0) {
-
-    window.location.href =
-        "cart.html";
-
+    window.location.href = "cart.html";
 }
 
-
 let total = 0;
-
 
 const orderItems =
 document.getElementById("orderItems");
 
-
-
-/*
-   DISPLAY CART ITEMS
-*/
+/* DISPLAY CART ITEMS */
 
 cart.forEach(item => {
 
     const itemTotal =
-        item.price * item.quantity;
+        Number(item.price) * Number(item.quantity);
 
     total += itemTotal;
-
 
     orderItems.innerHTML += `
 
@@ -560,24 +495,14 @@ cart.forEach(item => {
         </div>
 
     `;
-
 });
 
-
-
-/*
-   DISPLAY TOTAL
-*/
+/* DISPLAY TOTAL */
 
 document.getElementById("total")
-    .textContent =
-        "৳" + total;
+    .textContent = "৳" + total;
 
-
-
-/*
-   PLACE ORDER
-*/
+/* PLACE ORDER */
 
 document
 .getElementById("checkoutForm")
@@ -585,13 +510,11 @@ document
 
     e.preventDefault();
 
-
     const customerName =
         document
         .getElementById("customerName")
         .value
         .trim();
-
 
     const whatsapp =
         document
@@ -599,18 +522,13 @@ document
         .value
         .trim();
 
-
     const email =
         document
         .getElementById("email")
         .value
         .trim();
 
-
-
-    /*
-       VALIDATE FORM
-    */
+    /* VALIDATE FORM */
 
     if (
         !customerName ||
@@ -623,14 +541,9 @@ document
         );
 
         return;
-
     }
 
-
-
-    /*
-       GENERATE ORDER ID
-    */
+    /* GENERATE ORDER ID */
 
     const orderID =
         "AV-" +
@@ -639,11 +552,7 @@ document
         .replace(/\D/g,"")
         .slice(0,14);
 
-
-
-    /*
-       CREATE ORDER OBJECT
-    */
+    /* CREATE ORDER OBJECT */
 
     const order = {
 
@@ -665,57 +574,36 @@ document
 
         createdAt:
             new Date().toISOString()
-
     };
 
-
-
-    /*
-       SAVE ORDER
-    */
+    /* SAVE ORDER */
 
     localStorage.setItem(
         "lastOrder",
         JSON.stringify(order)
     );
 
-
-
-    /*
-       REDIRECT TO
-       ORDER CONFIRMATION
-    */
+    /* REDIRECT TO ORDER CONFIRMATION */
 
     window.location.href =
         "order-success.html";
 
 });
 
-
-
-/*
-   ESCAPE HTML
-*/
+/* ESCAPE HTML */
 
 function escapeHTML(value) {
 
     return String(value)
 
         .replace(/&/g,"&amp;")
-
         .replace(/</g,"&lt;")
-
         .replace(/>/g,"&gt;")
-
         .replace(/"/g,"&quot;")
-
         .replace(/'/g,"&#039;");
-
 }
 
 </script>
 
-
 </body>
-
 </html>

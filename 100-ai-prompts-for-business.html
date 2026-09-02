@@ -1,0 +1,1911 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>100 AI Prompts for Business | Nexus Mart BD</title>
+
+    <meta
+        name="description"
+        content="100 ready-to-use AI prompts for business owners, entrepreneurs, marketers and professionals."
+    >
+
+    <style>
+
+        /* =========================================================
+           GLOBAL
+        ========================================================= */
+
+
+
+
+
+        :root {
+            --bg: #080909;
+            --bg-soft: #0d0e0f;
+            --card: #101112;
+            --card-hover: #151617;
+
+            --border: #242526;
+            --border-light: #303132;
+
+            --orange: #ff5a1f;
+            --orange-dark: #e84b16;
+
+            --white: #ffffff;
+            --text: #e7e7e7;
+            --muted: #858585;
+            --muted-dark: #555555;
+
+            --max-width: 1200px;
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+
+        body::before {
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                );
+
+            background-size: 40px 40px;
+
+            pointer-events: none;
+
+            z-index: -1;
+        }
+
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        header {
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            background: rgba(15,16,17,0.96);
+
+            border-bottom: 1px solid var(--border);
+
+            backdrop-filter: blur(12px);
+        }
+
+
+        .navbar {
+            max-width: var(--max-width);
+
+            height: 80px;
+
+            margin: auto;
+
+            padding: 0 28px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 30px;
+        }
+
+
+        .brand {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+
+        /* =========================================================
+           NEXUS MART BD LOGO
+        ========================================================= */
+
+        .brand-logo {
+            width: 48px;
+
+            height: 48px;
+
+            object-fit: contain;
+
+            display: block;
+
+            flex-shrink: 0;
+        }
+
+
+        .brand-text strong {
+            display: block;
+
+            color: white;
+
+            font-size: 17px;
+        }
+
+
+        .brand-text span {
+            display: block;
+
+            color: #666;
+
+            font-size: 8px;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+        }
+
+
+        .nav-links {
+            display: flex;
+
+            gap: 28px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        .nav-links a {
+            color: #888;
+
+            transition: 0.2s;
+        }
+
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+
+        .cart-button {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            border: 1px solid #333;
+
+            background: #171819;
+
+            color: white;
+
+            padding: 10px 15px;
+
+            border-radius: 6px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        .cart-button:hover {
+            border-color: var(--orange);
+
+            color: var(--orange);
+        }
+
+
+        .cart-count {
+            min-width: 20px;
+
+            height: 20px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: var(--orange);
+
+            color: white;
+
+            border-radius: 50%;
+
+            font-size: 10px;
+        }
+
+
+
+        /* =========================================================
+           PRODUCT HERO
+        ========================================================= */
+
+        .product-page {
+            max-width: var(--max-width);
+
+            margin: auto;
+
+            padding: 60px 28px 80px;
+        }
+
+
+        .breadcrumb {
+            color: #666;
+
+            font-size: 10px;
+
+            margin-bottom: 35px;
+        }
+
+
+        .breadcrumb a:hover {
+            color: var(--orange);
+        }
+
+
+        .product-hero {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 60px;
+
+            align-items: start;
+        }
+
+
+
+        /* =========================================================
+           PRODUCT VISUAL
+        ========================================================= */
+
+        .product-preview {
+    min-height: 500px;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid var(--border);
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(255,90,31,0.15),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #171818,
+            #090a0a
+        );
+
+    overflow: hidden;
+}
+
+
+.product-image {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    z-index: 2;
+}
+
+
+
+
+
+
+
+        .preview-card {
+            position: relative;
+
+            z-index: 2;
+
+            width: 280px;
+
+            min-height: 350px;
+
+            padding: 30px;
+
+            background: #101112;
+
+            border: 1px solid #383838;
+
+            box-shadow:
+                0 25px 60px rgba(0,0,0,0.5);
+
+            transform: rotate(-3deg);
+        }
+
+
+        .preview-label {
+            color: var(--orange);
+
+            font-size: 9px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 30px;
+        }
+
+
+        .preview-card h2 {
+            color: white;
+
+            font-size: 30px;
+
+            line-height: 1.05;
+
+            letter-spacing: -1.5px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .preview-card p {
+            color: #777;
+
+            font-size: 11px;
+
+            line-height: 1.7;
+        }
+
+
+        .preview-number {
+            margin-top: 40px;
+
+            color: var(--orange);
+
+            font-size: 55px;
+
+            font-weight: 900;
+
+            line-height: 1;
+        }
+
+
+        .preview-number span {
+            display: block;
+
+            color: #666;
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+            margin-top: 5px;
+        }
+
+
+
+        /* =========================================================
+           PRODUCT INFORMATION
+        ========================================================= */
+
+        .product-info {
+            padding-top: 5px;
+        }
+
+
+        .product-category {
+            color: var(--orange);
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 12px;
+        }
+
+
+        .product-info h1 {
+            color: white;
+
+            font-size: clamp(38px, 5vw, 58px);
+
+            line-height: 1;
+
+            letter-spacing: -2.5px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .product-description {
+            color: #858585;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+
+            margin-bottom: 25px;
+        }
+
+
+        .product-price {
+            color: white;
+
+            font-size: 30px;
+
+            font-weight: 900;
+
+            margin-bottom: 25px;
+        }
+
+
+        .product-price small {
+            color: #555;
+
+            font-size: 10px;
+
+            font-weight: 600;
+        }
+
+
+
+        /* =========================================================
+           BUTTONS
+        ========================================================= */
+
+        .product-buttons {
+            display: flex;
+
+            gap: 10px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .add-button {
+            flex: 1;
+
+            padding: 15px;
+
+            border: 1px solid #444;
+
+            background: #181919;
+
+            color: white;
+
+            border-radius: 5px;
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            transition: 0.2s;
+        }
+
+
+        .add-button:hover {
+            border-color: var(--orange);
+
+            color: var(--orange);
+        }
+
+
+        .buy-button {
+            flex: 1;
+
+            padding: 15px;
+
+            border: none;
+
+            background: var(--orange);
+
+            color: white;
+
+            border-radius: 5px;
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            transition: 0.2s;
+        }
+
+
+        .buy-button:hover {
+            background: var(--orange-dark);
+
+            transform: translateY(-1px);
+        }
+
+
+
+        /* =========================================================
+           PRODUCT FEATURES
+        ========================================================= */
+
+        .features {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            border-top: 1px solid var(--border);
+
+            border-bottom: 1px solid var(--border);
+
+            margin-top: 25px;
+        }
+
+
+        .feature {
+            padding: 15px 10px;
+
+            color: #777;
+
+            font-size: 10px;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+
+        .feature:nth-child(odd) {
+            border-right: 1px solid var(--border);
+        }
+
+
+        .feature strong {
+            display: block;
+
+            color: #ccc;
+
+            margin-bottom: 3px;
+        }
+
+
+
+        /* =========================================================
+           CONTENT SECTIONS
+        ========================================================= */
+
+        .content-section {
+            margin-top: 90px;
+
+            border-top: 1px solid var(--border);
+
+            padding-top: 45px;
+        }
+
+
+        .section-label {
+            color: var(--orange);
+
+            font-size: 9px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 7px;
+        }
+
+
+        .content-section h2 {
+            color: white;
+
+            font-size: 28px;
+
+            letter-spacing: -1px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .content-section > p {
+            max-width: 750px;
+
+            color: #777;
+
+            font-size: 13px;
+
+            line-height: 1.8;
+
+            margin-bottom: 25px;
+        }
+
+
+
+        /* =========================================================
+           WHAT'S INCLUDED
+        ========================================================= */
+
+        .included-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 10px;
+        }
+
+
+        .included-item {
+            padding: 22px;
+
+            border: 1px solid var(--border);
+
+            background: #0d0e0e;
+        }
+
+
+        .included-icon {
+            width: 35px;
+
+            height: 35px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-bottom: 14px;
+
+            border: 1px solid rgba(255,90,31,0.3);
+
+            background: rgba(255,90,31,0.06);
+
+            color: var(--orange);
+
+            border-radius: 5px;
+        }
+
+
+        .included-item h3 {
+            color: #ddd;
+
+            font-size: 13px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .included-item p {
+            color: #666;
+
+            font-size: 10px;
+
+            line-height: 1.6;
+        }
+
+
+
+        /* =========================================================
+           SAMPLE PROMPTS
+        ========================================================= */
+
+        .prompt-list {
+            display: grid;
+
+            gap: 10px;
+        }
+
+
+        .prompt {
+            padding: 18px 20px;
+
+            border: 1px solid var(--border);
+
+            background: #0d0e0e;
+
+            color: #999;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+
+            transition: 0.2s;
+        }
+
+
+        .prompt:hover {
+            border-color: #444;
+
+            background: #111212;
+        }
+
+
+        .prompt-number {
+            color: var(--orange);
+
+            font-weight: 900;
+
+            margin-right: 10px;
+        }
+
+
+
+        /* =========================================================
+           CTA
+        ========================================================= */
+
+        .bottom-cta {
+            margin-top: 70px;
+
+            padding: 45px;
+
+            border: 1px solid #2b2b2b;
+
+            background:
+                radial-gradient(
+                    circle at 80% 50%,
+                    rgba(255,90,31,0.12),
+                    transparent 35%
+                ),
+                #0d0e0e;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 30px;
+        }
+
+
+        .bottom-cta h2 {
+            margin-bottom: 7px;
+        }
+
+
+        .bottom-cta p {
+            color: #666;
+
+            font-size: 12px;
+        }
+
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            border-top: 1px solid var(--border);
+
+            background: #090a0a;
+        }
+
+
+        .footer-inner {
+            max-width: var(--max-width);
+
+            margin: auto;
+
+            padding: 40px 28px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 30px;
+        }
+
+
+        .footer-brand strong {
+            display: block;
+
+            color: white;
+
+            font-size: 16px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .footer-brand p {
+            max-width: 350px;
+
+            color: #555;
+
+            font-size: 11px;
+        }
+
+
+        .footer-links {
+            display: flex;
+
+            gap: 25px;
+
+            align-items: center;
+        }
+
+
+        .footer-links a {
+            color: #666;
+
+            font-size: 10px;
+
+            font-weight: 700;
+        }
+
+
+        .footer-links a:hover {
+            color: var(--orange);
+        }
+
+
+
+        /* =========================================================
+           TOAST
+        ========================================================= */
+
+        .toast {
+            position: fixed;
+
+            right: 20px;
+
+            bottom: 20px;
+
+            z-index: 5000;
+
+            background: #171818;
+
+            border: 1px solid #333;
+
+            border-left: 3px solid var(--orange);
+
+            color: white;
+
+            padding: 13px 18px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            transform: translateY(100px);
+
+            opacity: 0;
+
+            transition: 0.3s;
+        }
+
+
+        .toast.show {
+            transform: translateY(0);
+
+            opacity: 1;
+        }
+
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 800px) {
+
+            .navbar {
+                padding: 0 16px;
+            }
+
+
+            .nav-links {
+                display: none;
+            }
+
+
+            .product-page {
+                padding: 40px 16px 60px;
+            }
+
+
+            .product-hero {
+                grid-template-columns: 1fr;
+
+                gap: 40px;
+            }
+
+
+            .product-preview {
+                min-height: 420px;
+            }
+
+
+            .included-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+
+            .bottom-cta {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                padding: 30px;
+            }
+
+
+            .footer-inner {
+                flex-direction: column;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .brand-logo {
+                width: 38px;
+
+                height: 38px;
+            }
+
+
+            .brand-text span {
+                display: none;
+            }
+
+
+            .brand-text strong {
+                font-size: 14px;
+            }
+
+
+            .product-info h1 {
+                font-size: 40px;
+            }
+
+
+            .product-buttons {
+                flex-direction: column;
+            }
+
+
+            .included-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+
+            .feature:nth-child(odd) {
+                border-right: none;
+            }
+
+
+            .preview-card {
+                width: 240px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header>
+
+    <nav class="navbar">
+
+        <a href="index.html" class="brand">
+
+            <!-- YOUR WEBP LOGO -->
+
+            <img
+                src="logo.webp"
+                alt="Nexus Mart BD Logo"
+                class="brand-logo"
+            >
+
+            <div class="brand-text">
+
+                <strong>
+                    Nexus Mart BD
+                </strong>
+
+                <span>
+                    Business Tools · AI · Resources
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="shop.html">
+                Shop
+            </a>
+
+            <a href="index.html#categories">
+                Categories
+            </a>
+
+        </div>
+
+
+        <button
+            class="cart-button"
+            onclick="openCart()"
+        >
+
+            🛒
+
+            Cart
+
+            <span
+                class="cart-count"
+                id="cartCount"
+            >
+                0
+            </span>
+
+        </button>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =========================================================
+     PRODUCT PAGE
+========================================================= -->
+
+<main class="product-page">
+
+
+    <!-- BREADCRUMB -->
+
+    <div class="breadcrumb">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        &nbsp; / &nbsp;
+
+        <a href="shop.html">
+            AI & Prompts
+        </a>
+
+        &nbsp; / &nbsp;
+
+        100 AI Prompts for Business
+
+    </div>
+
+
+
+    <!-- =====================================================
+         PRODUCT HERO
+    ====================================================== -->
+
+    <section class="product-hero">
+
+
+        <!-- PRODUCT PREVIEW -->
+
+        <div class="product-preview">
+
+    <img
+        src="100-ai-prompts-for-business.webp"
+        alt="100 AI Prompts for Business"
+        class="product-image"
+    >
+
+</div>
+
+
+
+        <!-- PRODUCT INFORMATION -->
+
+        <div class="product-info">
+
+            <div class="product-category">
+                AI & Prompts
+            </div>
+
+
+            <h1>
+                100 AI Prompts
+                <br>
+                for Business
+            </h1>
+
+
+            <p class="product-description">
+
+                Save hours of work with a collection of
+                practical AI prompts created for business
+                owners, entrepreneurs, marketers, sellers
+                and professionals.
+
+            </p>
+
+
+            <div class="product-price">
+
+                ৳99
+
+                <small>
+                    one-time payment
+                </small>
+
+            </div>
+
+
+
+            <!-- BUTTONS -->
+
+            <div class="product-buttons">
+
+                <button
+                    class="add-button"
+                    onclick="addToCart(
+                        'AI-BUS-001',
+                        '100 AI Prompts for Business',
+                        99
+                    )"
+                >
+
+                    + ADD TO CART
+
+                </button>
+
+
+                <button
+                    class="buy-button"
+                    onclick="buyNow(
+                        'AI-BUS-001',
+                        '100 AI Prompts for Business',
+                        99
+                    )"
+                >
+
+                    BUY NOW
+
+                </button>
+
+            </div>
+
+
+
+            <!-- FEATURES -->
+
+            <div class="features">
+
+                <div class="feature">
+
+                    <strong>
+                        ✓ 100 Prompts
+                    </strong>
+
+                    Ready-to-use prompts
+
+                </div>
+
+
+                <div class="feature">
+
+                    <strong>
+                        ✓ Digital Product
+                    </strong>
+
+                    No physical delivery
+
+                </div>
+
+
+                <div class="feature">
+
+                    <strong>
+                        ✓ Beginner Friendly
+                    </strong>
+
+                    Easy to use
+
+                </div>
+
+
+                <div class="feature">
+
+                    <strong>
+                        ✓ Instant Access
+                    </strong>
+
+                    Digital delivery
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         WHAT'S INCLUDED
+    ====================================================== -->
+
+    <section class="content-section">
+
+        <div class="section-label">
+            What's Included
+        </div>
+
+        <h2>
+            Everything you need to get started.
+        </h2>
+
+        <p>
+
+            This collection contains practical prompts
+            that can be copied directly into ChatGPT or
+            another compatible AI assistant and customized
+            for your business.
+
+        </p>
+
+
+        <div class="included-grid">
+
+
+            <div class="included-item">
+
+                <div class="included-icon">
+                    💼
+                </div>
+
+                <h3>
+                    Business Strategy
+                </h3>
+
+                <p>
+                    Prompts for planning, decision-making,
+                    business ideas and strategy.
+                </p>
+
+            </div>
+
+
+            <div class="included-item">
+
+                <div class="included-icon">
+                    📣
+                </div>
+
+                <h3>
+                    Marketing
+                </h3>
+
+                <p>
+                    Create marketing ideas, campaigns,
+                    content and promotional strategies.
+                </p>
+
+            </div>
+
+
+            <div class="included-item">
+
+                <div class="included-icon">
+                    💬
+                </div>
+
+                <h3>
+                    Customer Service
+                </h3>
+
+                <p>
+                    Improve customer communication,
+                    replies and support workflows.
+                </p>
+
+            </div>
+
+
+            <div class="included-item">
+
+                <div class="included-icon">
+                    ✍️
+                </div>
+
+                <h3>
+                    Content Creation
+                </h3>
+
+                <p>
+                    Generate business content, posts,
+                    descriptions and professional copy.
+                </p>
+
+            </div>
+
+
+            <div class="included-item">
+
+                <div class="included-icon">
+                    📈
+                </div>
+
+                <h3>
+                    Sales
+                </h3>
+
+                <p>
+                    Sales messaging, offers, objections
+                    and lead-generation prompts.
+                </p>
+
+            </div>
+
+
+            <div class="included-item">
+
+                <div class="included-icon">
+                    ⚡
+                </div>
+
+                <h3>
+                    Productivity
+                </h3>
+
+                <p>
+                    Save time by using AI for everyday
+                    business tasks and workflows.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         SAMPLE PROMPTS
+    ====================================================== -->
+
+    <section class="content-section">
+
+        <div class="section-label">
+            Sample
+        </div>
+
+        <h2>
+            See what you can do with the prompts.
+        </h2>
+
+        <p>
+
+            Here are a few examples of the type of
+            business prompts included in the product.
+
+        </p>
+
+
+        <div class="prompt-list">
+
+
+            <div class="prompt">
+
+                <span class="prompt-number">
+                    01
+                </span>
+
+                Create a 30-day marketing plan for
+                a small business selling [PRODUCT]
+                to [TARGET CUSTOMER].
+
+            </div>
+
+
+            <div class="prompt">
+
+                <span class="prompt-number">
+                    02
+                </span>
+
+                Act as a business consultant and
+                identify five ways I can reduce
+                operating costs without reducing
+                customer satisfaction.
+
+            </div>
+
+
+            <div class="prompt">
+
+                <span class="prompt-number">
+                    03
+                </span>
+
+                Write five professional responses
+                to a customer who is unhappy with
+                our product or service.
+
+            </div>
+
+
+            <div class="prompt">
+
+                <span class="prompt-number">
+                    04
+                </span>
+
+                Analyze this business idea and give
+                me its potential target market,
+                competitors, risks and opportunities.
+
+            </div>
+
+
+            <div class="prompt">
+
+                <span class="prompt-number">
+                    05
+                </span>
+
+                Create ten social media content ideas
+                for a business selling [PRODUCT] on
+                Facebook and Instagram.
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         WHO IS IT FOR
+    ====================================================== -->
+
+    <section class="content-section">
+
+        <div class="section-label">
+            Who It's For
+        </div>
+
+        <h2>
+            Built for people who want to work faster.
+        </h2>
+
+        <p>
+
+            Whether you run a business, sell products,
+            work in marketing or simply want to use AI
+            more effectively, these prompts give you
+            a practical starting point.
+
+        </p>
+
+
+        <div class="included-grid">
+
+            <div class="included-item">
+
+                <div class="included-icon">
+                    🚀
+                </div>
+
+                <h3>
+                    Entrepreneurs
+                </h3>
+
+                <p>
+                    Generate ideas, plans and strategies
+                    faster.
+                </p>
+
+            </div>
+
+
+            <div class="included-item">
+
+                <div class="included-icon">
+                    🛒
+                </div>
+
+                <h3>
+                    Online Sellers
+                </h3>
+
+                <p>
+                    Improve product content, marketing
+                    and customer communication.
+                </p>
+
+            </div>
+
+
+            <div class="included-item">
+
+                <div class="included-icon">
+                    📊
+                </div>
+
+                <h3>
+                    Professionals
+                </h3>
+
+                <p>
+                    Use AI to simplify repetitive
+                    business tasks.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FINAL CTA
+    ====================================================== -->
+
+    <section class="bottom-cta">
+
+        <div>
+
+            <h2>
+                Ready to work smarter?
+            </h2>
+
+            <p>
+                Get 100 practical AI prompts for only ৳99.
+            </p>
+
+        </div>
+
+
+        <button
+            class="buy-button"
+            onclick="buyNow(
+                'AI-BUS-001',
+                '100 AI Prompts for Business',
+                99
+            )"
+        >
+
+            GET IT NOW → ৳99
+
+        </button>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="footer-inner">
+
+
+        <div class="footer-brand">
+
+            <strong>
+                Nexus Mart BD
+            </strong>
+
+            <p>
+                Affordable digital tools, templates,
+                AI resources and business solutions.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="shop.html">
+                Shop
+            </a>
+
+            <a href="#">
+                Contact
+            </a>
+
+            <a href="#">
+                Privacy
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div
+    class="toast"
+    id="toast"
+>
+    Added to cart ✓
+</div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+
+/* =========================================================
+   CART
+========================================================= */
+
+let cart =
+    JSON.parse(
+        localStorage.getItem("cart")
+    ) || [];
+
+
+updateCartCount();
+
+
+
+/* =========================================================
+   ADD TO CART
+========================================================= */
+
+function addToCart(id, name, price) {
+
+    const existingProduct =
+        cart.find(
+            item => item.id === id
+        );
+
+
+    if (existingProduct) {
+
+        existingProduct.quantity += 1;
+
+    } else {
+
+        cart.push({
+
+            id: id,
+
+            name: name,
+
+            price: price,
+
+            quantity: 1
+
+        });
+
+    }
+
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+
+    updateCartCount();
+
+
+    showToast(
+        name + " added to cart ✓"
+    );
+
+}
+
+
+
+/* =========================================================
+   BUY NOW
+========================================================= */
+
+function buyNow(id, name, price) {
+
+    cart = [{
+
+        id: id,
+
+        name: name,
+
+        price: price,
+
+        quantity: 1
+
+    }];
+
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+
+    window.location.href =
+        "checkout.html";
+
+}
+
+
+
+/* =========================================================
+   CART COUNT
+========================================================= */
+
+function updateCartCount() {
+
+    const count =
+        cart.reduce(
+            (total, item) =>
+                total + item.quantity,
+            0
+        );
+
+
+    document
+        .getElementById("cartCount")
+        .textContent = count;
+
+}
+
+
+
+/* =========================================================
+   OPEN CART
+========================================================= */
+
+function openCart() {
+
+    window.location.href =
+        "cart.html";
+
+}
+
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(message) {
+
+    const toast =
+        document.getElementById("toast");
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        () => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        2200
+    );
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

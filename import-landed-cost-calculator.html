@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/webp" href="logo.webp">
+
+  <title>Import Landed Cost Calculator | Nexus Mart BD</title>
+
+  <style>
+    :root {
+      --bg: #0b0b0d;
+      --card: #141416;
+      --card2: #19191c;
+      --text: #f5f5f5;
+      --muted: #a1a1aa;
+      --accent: #ff5a1f;
+      --accent-hover: #ff6d3a;
+      --border: #27272a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1200px, 92%);
+      margin: auto;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(11, 11, 13, 0.95);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-area img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .brand {
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .brand span {
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    nav a {
+      color: #d4d4d8;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .cart-btn {
+      background: var(--accent);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .cart-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    /* HERO */
+    .hero {
+      padding: 70px 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .product-preview {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 18px;
+      overflow: hidden;
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .category {
+      display: inline-block;
+      color: var(--accent);
+      background: rgba(255, 90, 31, 0.1);
+      border: 1px solid rgba(255, 90, 31, 0.25);
+      padding: 6px 11px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 17px;
+    }
+
+    h1 {
+      font-size: clamp(38px, 5vw, 62px);
+      line-height: 1.05;
+      margin-bottom: 20px;
+      letter-spacing: -2px;
+    }
+
+    .description {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 600px;
+      margin-bottom: 28px;
+    }
+
+    .price {
+      font-size: 34px;
+      font-weight: 800;
+      margin-bottom: 25px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      padding: 14px 22px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 800;
+      transition: 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      background: var(--card2);
+      color: white;
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .feature {
+      padding: 15px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .feature strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+
+    .feature span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* SECTIONS */
+    section.content-section {
+      padding: 70px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-title {
+      font-size: 34px;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 700px;
+      margin-bottom: 35px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 25px;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .included-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .included-item {
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--card);
+    }
+
+    .included-item strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .included-item span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* COST BREAKDOWN */
+    .cost-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .cost-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .cost-card h3 {
+      margin-bottom: 8px;
+      font-size: 17px;
+    }
+
+    .cost-card p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+      padding: 80px 20px;
+      background: linear-gradient(
+        180deg,
+        transparent,
+        rgba(255, 90, 31, 0.06)
+      );
+    }
+
+    .cta h2 {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .cta p {
+      color: var(--muted);
+      max-width: 650px;
+      margin: 0 auto 25px;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 30px 0;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #18181b;
+      border: 1px solid var(--border);
+      color: white;
+      padding: 14px 18px;
+      border-radius: 8px;
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: 0.3s;
+      z-index: 2000;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 850px) {
+      nav {
+        display: none;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .cards,
+      .cost-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .included-list {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 45px 0;
+      }
+
+      h1 {
+        letter-spacing: -1px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .cta h2 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container nav">
+
+      <a href="index.html" class="logo-area">
+        <img src="logo.webp" alt="Nexus Mart BD">
+
+        <div class="brand">
+          Nexus Mart BD
+          <span>Business Tools · AI · Resources</span>
+        </div>
+      </a>
+
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="shop.html">Categories</a>
+      </nav>
+
+      <a href="cart.html" class="cart-btn">
+        Cart (<span id="cartCount">0</span>)
+      </a>
+
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+  <main>
+
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <div class="product-preview">
+          <img
+            src="import-landed-cost-calculator.webp"
+            alt="Import Landed Cost Calculator"
+            class="product-image"
+          >
+        </div>
+
+        <div>
+
+          <span class="category">Import &amp; Business Tools</span>
+
+          <h1>Import Landed Cost Calculator</h1>
+
+          <p class="description">
+            Calculate the true landed cost of your imported products by
+            organizing product costs, freight, duties, taxes, customs and
+            other import-related expenses in one easy-to-use Excel tool.
+          </p>
+
+          <div class="price">৳199</div>
+
+          <div class="buttons">
+
+            <button
+              class="btn btn-primary"
+              onclick="addToCart(
+                'ILCC-001',
+                'Import Landed Cost Calculator',
+                199
+              )"
+            >
+              Add to Cart
+            </button>
+
+            <button
+              class="btn btn-secondary"
+              onclick="buyNow(
+                'ILCC-001',
+                'Import Landed Cost Calculator',
+                199
+              )"
+            >
+              Buy Now
+            </button>
+
+          </div>
+
+          <div class="features">
+
+            <div class="feature">
+              <strong>Excel Based Tool</strong>
+              <span>Simple spreadsheet-based calculator</span>
+            </div>
+
+            <div class="feature">
+              <strong>Import Cost Breakdown</strong>
+              <span>Organize major landed-cost components</span>
+            </div>
+
+            <div class="feature">
+              <strong>Per Unit Cost</strong>
+              <span>Understand the cost of each imported unit</span>
+            </div>
+
+            <div class="feature">
+              <strong>Importer Friendly</strong>
+              <span>Designed for practical import costing</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- WHAT'S INCLUDED -->
+    <section class="content-section">
+      <div class="container">
+
+        <h2 class="section-title">What’s Included</h2>
+
+        <p class="section-subtitle">
+          A practical Excel tool for breaking down your import expenses and
+          understanding the actual cost of getting products into your market.
+        </p>
+
+        <div class="included-list">
+
+          <div class="included-item">
+            <strong>📦 Product Cost</strong>
+            <span>
+              Enter the purchase value of your imported products.
+            </span>
+          </div>
+
+          <div class="included-item">
+            <strong>🚢 Freight &amp; Shipping</strong>
+            <span>
+              Account for transportation and shipping-related costs.
+            </span>
+          </div>
+
+          <div class="included-item">
+            <strong>🧾 Duties &amp; Taxes</strong>
+            <span>
+              Organize applicable import duties, taxes and related charges.
+            </span>
+          </div>
+
+          <div class="included-item">
+            <strong>🏦 Customs &amp; Clearance</strong>
+            <span>
+              Include customs clearance and other processing expenses.
+            </span>
+          </div>
+
+          <div class="included-item">
+            <strong>💰 Additional Expenses</strong>
+            <span>
+              Add other costs associated with bringing the shipment to its
+              final destination.
+            </span>
+          </div>
+
+          <div class="included-item">
+            <strong>📊 Landed Cost Analysis</strong>
+            <span>
+              See the combined import cost and understand your effective
+              product cost.
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- COST BREAKDOWN -->
+    <section class="content-section">
+      <div class="container">
+
+        <h2 class="section-title">Import Cost Breakdown</h2>
+
+        <p class="section-subtitle">
+          Understand where your money goes before deciding the final selling
+          price of your imported products.
+        </p>
+
+        <div class="cost-grid">
+
+          <div class="cost-card">
+            <h3>01. Product Cost</h3>
+            <p>
+              Record the supplier price or purchase value of the goods being
+              imported.
+            </p>
+          </div>
+
+          <div class="cost-card">
+            <h3>02. Logistics Cost</h3>
+            <p>
+              Account for freight, shipping and transportation expenses
+              connected to the shipment.
+            </p>
+          </div>
+
+          <div class="cost-card">
+            <h3>03. Import Charges</h3>
+            <p>
+              Include duties, taxes, customs and other applicable import
+              expenses.
+            </p>
+          </div>
+
+          <div class="cost-card">
+            <h3>04. Additional Costs</h3>
+            <p>
+              Add handling, documentation, port and other related expenses
+              where applicable.
+            </p>
+          </div>
+
+          <div class="cost-card">
+            <h3>05. Total Landed Cost</h3>
+            <p>
+              Combine the relevant costs to understand the overall cost of
+              bringing the shipment into your market.
+            </p>
+          </div>
+
+          <div class="cost-card">
+            <h3>06. Cost Per Unit</h3>
+            <p>
+              Calculate the effective landed cost of each individual product
+              or unit.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- WHO IT'S FOR -->
+    <section class="content-section">
+      <div class="container">
+
+        <h2 class="section-title">Who It’s For</h2>
+
+        <p class="section-subtitle">
+          Built for businesses and individuals who need a clearer picture of
+          their import costs.
+        </p>
+
+        <div class="cards">
+
+          <div class="card">
+            <h3>🚢 Importers</h3>
+            <p>
+              Estimate the real cost of imported products before making
+              purchasing and pricing decisions.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>🛒 Ecommerce Sellers</h3>
+            <p>
+              Understand your product cost before setting a profitable
+              selling price.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>🏢 Wholesalers &amp; Traders</h3>
+            <p>
+              Organize import expenses and determine a more accurate cost
+              basis for your inventory.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- HOW IT WORKS -->
+    <section class="content-section">
+      <div class="container">
+
+        <h2 class="section-title">How It Works</h2>
+
+        <p class="section-subtitle">
+          Enter your import information, organize the expenses and use the
+          calculated landed cost to make better pricing decisions.
+        </p>
+
+        <div class="cards">
+
+          <div class="card">
+            <h3>01. Enter Import Costs</h3>
+            <p>
+              Add your product value, shipping and other relevant import
+              expenses.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>02. Organize Expenses</h3>
+            <p>
+              Keep your import-related costs together instead of calculating
+              them manually across different documents.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>03. Review Landed Cost</h3>
+            <p>
+              Use the resulting cost information to evaluate your actual
+              product cost and pricing strategy.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- CTA -->
+    <section class="cta">
+
+      <div class="container">
+
+        <h2>Know Your Real Import Cost.</h2>
+
+        <p>
+          Stop guessing how much your imported products actually cost.
+          Organize your import expenses with the Import Landed Cost Calculator
+          and make smarter purchasing and pricing decisions.
+        </p>
+
+        <button
+          class="btn btn-primary"
+          onclick="buyNow(
+            'ILCC-001',
+            'Import Landed Cost Calculator',
+            199
+          )"
+        >
+          Get the Import Landed Cost Calculator
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      © 2026 Nexus Mart BD. All rights reserved.
+    </div>
+  </footer>
+
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+
+  <script>
+
+    function getCart() {
+      return JSON.parse(localStorage.getItem("cart")) || [];
+    }
+
+    function saveCart(cart) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+    function updateCartCount() {
+
+      const cart = getCart();
+
+      const count = cart.reduce(
+        (total, item) => total + (item.quantity || 1),
+        0
+      );
+
+      document.getElementById("cartCount").textContent = count;
+    }
+
+    function addToCart(id, name, price) {
+
+      const cart = getCart();
+
+      const existing = cart.find(item => item.id === id);
+
+      if (existing) {
+        existing.quantity = (existing.quantity || 1) + 1;
+      } else {
+        cart.push({
+          id: id,
+          name: name,
+          price: price,
+          quantity: 1
+        });
+      }
+
+      saveCart(cart);
+      updateCartCount();
+
+      showToast("Added to cart");
+    }
+
+    function buyNow(id, name, price) {
+
+      const cart = [{
+        id: id,
+        name: name,
+        price: price,
+        quantity: 1
+      }];
+
+      saveCart(cart);
+
+      window.location.href = "checkout.html";
+    }
+
+    function openCart() {
+      window.location.href = "cart.html";
+    }
+
+    function showToast(message) {
+
+      const toast = document.getElementById("toast");
+
+      toast.textContent = message;
+      toast.classList.add("show");
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2200);
+    }
+
+    updateCartCount();
+
+  </script>
+
+</body>
+</html>

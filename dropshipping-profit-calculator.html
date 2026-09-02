@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dropshipping Profit Calculator | Nexus Mart BD</title>
+
+<meta
+    name="description"
+    content="Excel-based Dropshipping Profit Calculator to calculate product costs, selling price, advertising expenses, platform fees and net profit."
+>
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+:root {
+    --bg: #080909;
+    --bg-soft: #0d0e0f;
+    --card: #101112;
+    --card-hover: #151617;
+
+    --border: #242526;
+    --border-light: #303132;
+
+    --orange: #ff5a1f;
+    --orange-dark: #e84b16;
+
+    --white: #ffffff;
+    --text: #e7e7e7;
+    --muted: #858585;
+    --muted-dark: #555555;
+
+    --max-width: 1200px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: rgba(15,16,17,0.96);
+    border-bottom: 1px solid var(--border);
+
+    backdrop-filter: blur(12px);
+}
+
+.navbar {
+    max-width: var(--max-width);
+    height: 80px;
+    margin: auto;
+
+    padding: 0 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+.brand-text strong {
+    display: block;
+    color: white;
+    font-size: 17px;
+}
+
+.brand-text span {
+    display: block;
+
+    color: #666;
+    font-size: 8px;
+
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.nav-links a {
+    color: #888;
+    transition: 0.2s;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+.cart-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    border: 1px solid #333;
+    background: #171819;
+    color: white;
+
+    padding: 10px 15px;
+
+    border-radius: 6px;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.cart-button:hover {
+    border-color: var(--orange);
+    color: var(--orange);
+}
+
+.cart-count {
+    min-width: 20px;
+    height: 20px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--orange);
+    color: white;
+
+    border-radius: 50%;
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   PRODUCT PAGE
+========================================================= */
+
+.product-page {
+    max-width: var(--max-width);
+    margin: auto;
+
+    padding: 60px 28px 80px;
+}
+
+.breadcrumb {
+    color: #666;
+    font-size: 10px;
+
+    margin-bottom: 35px;
+}
+
+.breadcrumb a:hover {
+    color: var(--orange);
+}
+
+.product-hero {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 60px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   PRODUCT VISUAL
+========================================================= */
+
+.product-preview {
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    min-height: 0;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--border);
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(255,90,31,0.15),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #171818,
+            #090a0a
+        );
+
+    overflow: hidden;
+}
+
+.product-image {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   PRODUCT INFORMATION
+========================================================= */
+
+.product-info {
+    padding-top: 5px;
+}
+
+.product-category {
+    color: var(--orange);
+
+    font-size: 10px;
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 12px;
+}
+
+.product-info h1 {
+    color: white;
+
+    font-size: clamp(38px, 5vw, 58px);
+
+    line-height: 1;
+
+    letter-spacing: -2.5px;
+
+    margin-bottom: 22px;
+}
+
+.product-description {
+    color: #858585;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    margin-bottom: 25px;
+}
+
+.product-price {
+    color: white;
+
+    font-size: 30px;
+    font-weight: 900;
+
+    margin-bottom: 25px;
+}
+
+.product-price small {
+    color: #555;
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.product-buttons {
+    display: flex;
+
+    gap: 10px;
+
+    margin-bottom: 25px;
+}
+
+.add-button {
+    flex: 1;
+
+    padding: 15px;
+
+    border: 1px solid #444;
+
+    background: #181919;
+
+    color: white;
+
+    border-radius: 5px;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    transition: 0.2s;
+}
+
+.add-button:hover {
+    border-color: var(--orange);
+    color: var(--orange);
+}
+
+.buy-button {
+    flex: 1;
+
+    padding: 15px;
+
+    border: none;
+
+    background: var(--orange);
+
+    color: white;
+
+    border-radius: 5px;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    transition: 0.2s;
+}
+
+.buy-button:hover {
+    background: var(--orange-dark);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.features {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+
+    margin-top: 25px;
+}
+
+.feature {
+    padding: 15px 10px;
+
+    color: #777;
+
+    font-size: 10px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.feature:nth-child(odd) {
+    border-right: 1px solid var(--border);
+}
+
+.feature strong {
+    display: block;
+
+    color: #ccc;
+
+    margin-bottom: 3px;
+}
+
+
+/* =========================================================
+   CONTENT SECTIONS
+========================================================= */
+
+.content-section {
+    margin-top: 90px;
+
+    border-top: 1px solid var(--border);
+
+    padding-top: 45px;
+}
+
+.section-label {
+    color: var(--orange);
+
+    font-size: 9px;
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 7px;
+}
+
+.content-section h2 {
+    color: white;
+
+    font-size: 28px;
+
+    letter-spacing: -1px;
+
+    margin-bottom: 15px;
+}
+
+.content-section > p {
+    max-width: 750px;
+
+    color: #777;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   INCLUDED GRID
+========================================================= */
+
+.included-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 10px;
+}
+
+.included-item {
+    padding: 22px;
+
+    border: 1px solid var(--border);
+
+    background: #0d0e0e;
+}
+
+.included-icon {
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 14px;
+
+    border: 1px solid rgba(255,90,31,0.3);
+
+    background: rgba(255,90,31,0.06);
+
+    color: var(--orange);
+
+    border-radius: 5px;
+}
+
+.included-item h3 {
+    color: #ddd;
+
+    font-size: 13px;
+
+    margin-bottom: 5px;
+}
+
+.included-item p {
+    color: #666;
+
+    font-size: 10px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   CALCULATOR FEATURES
+========================================================= */
+
+.calculator-list {
+    display: grid;
+
+    gap: 10px;
+}
+
+.calculator-row {
+    display: grid;
+
+    grid-template-columns: 60px 1fr;
+
+    gap: 15px;
+
+    padding: 18px 20px;
+
+    border: 1px solid var(--border);
+
+    background: #0d0e0e;
+
+    transition: 0.2s;
+}
+
+.calculator-row:hover {
+    border-color: #444;
+
+    background: #111212;
+}
+
+.calculator-number {
+    color: var(--orange);
+
+    font-weight: 900;
+
+    font-size: 12px;
+}
+
+.calculator-row h3 {
+    color: #ddd;
+
+    font-size: 12px;
+
+    margin-bottom: 4px;
+}
+
+.calculator-row p {
+    color: #666;
+
+    font-size: 10px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.bottom-cta {
+    margin-top: 70px;
+
+    padding: 45px;
+
+    border: 1px solid #2b2b2b;
+
+    background:
+        radial-gradient(
+            circle at 80% 50%,
+            rgba(255,90,31,0.12),
+            transparent 35%
+        ),
+        #0d0e0e;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+.bottom-cta h2 {
+    margin-bottom: 7px;
+}
+
+.bottom-cta p {
+    color: #666;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    border-top: 1px solid var(--border);
+
+    background: #090a0a;
+}
+
+.footer-inner {
+    max-width: var(--max-width);
+
+    margin: auto;
+
+    padding: 40px 28px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+.footer-brand strong {
+    display: block;
+
+    color: white;
+
+    font-size: 16px;
+
+    margin-bottom: 5px;
+}
+
+.footer-brand p {
+    max-width: 350px;
+
+    color: #555;
+
+    font-size: 11px;
+}
+
+.footer-links {
+    display: flex;
+
+    gap: 25px;
+
+    align-items: center;
+}
+
+.footer-links a {
+    color: #666;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+.footer-links a:hover {
+    color: var(--orange);
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast {
+    position: fixed;
+
+    right: 20px;
+    bottom: 20px;
+
+    z-index: 5000;
+
+    background: #171818;
+
+    border: 1px solid #333;
+
+    border-left: 3px solid var(--orange);
+
+    color: white;
+
+    padding: 13px 18px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    transform: translateY(100px);
+
+    opacity: 0;
+
+    transition: 0.3s;
+}
+
+.toast.show {
+    transform: translateY(0);
+
+    opacity: 1;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .navbar {
+        padding: 0 16px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .product-page {
+        padding: 40px 16px 60px;
+    }
+
+    .product-hero {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+    }
+
+    .product-preview {
+        width: 100%;
+
+        aspect-ratio: 1 / 1;
+
+        min-height: 0;
+    }
+
+    .included-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .bottom-cta {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        padding: 30px;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .brand-logo {
+        width: 38px;
+        height: 38px;
+    }
+
+    .brand-text span {
+        display: none;
+    }
+
+    .brand-text strong {
+        font-size: 14px;
+    }
+
+    .product-info h1 {
+        font-size: 40px;
+    }
+
+    .product-buttons {
+        flex-direction: column;
+    }
+
+    .included-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .feature:nth-child(odd) {
+        border-right: none;
+    }
+
+    .calculator-row {
+        grid-template-columns: 45px 1fr;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header>
+
+<nav class="navbar">
+
+    <a href="index.html" class="brand">
+
+        <img
+            src="logo.webp"
+            alt="Nexus Mart BD Logo"
+            class="brand-logo"
+        >
+
+        <div class="brand-text">
+
+            <strong>
+                Nexus Mart BD
+            </strong>
+
+            <span>
+                Business Tools · AI · Resources
+            </span>
+
+        </div>
+
+    </a>
+
+
+    <div class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="shop.html">
+            Shop
+        </a>
+
+        <a href="index.html#categories">
+            Categories
+        </a>
+
+    </div>
+
+
+    <button
+        class="cart-button"
+        onclick="openCart()"
+    >
+
+        🛒
+
+        Cart
+
+        <span
+            class="cart-count"
+            id="cartCount"
+        >
+            0
+        </span>
+
+    </button>
+
+</nav>
+
+</header>
+
+
+<!-- =========================================================
+     PRODUCT PAGE
+========================================================= -->
+
+<main class="product-page">
+
+
+<!-- BREADCRUMB -->
+
+<div class="breadcrumb">
+
+    <a href="index.html">
+        Home
+    </a>
+
+    &nbsp; / &nbsp;
+
+    <a href="shop.html">
+        Business Tools
+    </a>
+
+    &nbsp; / &nbsp;
+
+    Dropshipping Profit Calculator
+
+</div>
+
+
+<!-- =====================================================
+     PRODUCT HERO
+====================================================== -->
+
+<section class="product-hero">
+
+
+    <!-- PRODUCT PREVIEW -->
+
+    <div class="product-preview">
+
+        <img
+            src="dropshipping-profit-calculator.webp"
+            alt="Dropshipping Profit Calculator Excel Tool"
+            class="product-image"
+        >
+
+    </div>
+
+
+    <!-- PRODUCT INFORMATION -->
+
+    <div class="product-info">
+
+        <div class="product-category">
+            Business Tools
+        </div>
+
+
+        <h1>
+
+            Dropshipping
+            <br>
+            Profit Calculator
+
+        </h1>
+
+
+        <p class="product-description">
+
+            Calculate your dropshipping profit before you
+            spend your money. This Excel-based calculator
+            helps you estimate product costs, selling price,
+            advertising expenses, platform fees and actual
+            net profit.
+
+        </p>
+
+
+        <div class="product-price">
+
+            ৳199
+
+            <small>
+                one-time digital access
+            </small>
+
+        </div>
+
+
+        <!-- BUTTONS -->
+
+        <div class="product-buttons">
+
+            <button
+                class="add-button"
+                onclick="addToCart(
+                    'DPC-001',
+                    'Dropshipping Profit Calculator',
+                    199
+                )"
+            >
+
+                + ADD TO CART
+
+            </button>
+
+
+            <button
+                class="buy-button"
+                onclick="buyNow(
+                    'DPC-001',
+                    'Dropshipping Profit Calculator',
+                    199
+                )"
+            >
+
+                BUY NOW
+
+            </button>
+
+        </div>
+
+
+        <!-- FEATURES -->
+
+        <div class="features">
+
+            <div class="feature">
+
+                <strong>
+                    ✓ Excel Based Tool
+                </strong>
+
+                Easy spreadsheet-based calculation
+
+            </div>
+
+
+            <div class="feature">
+
+                <strong>
+                    ✓ Profit Calculation
+                </strong>
+
+                Calculate actual expected profit
+
+            </div>
+
+
+            <div class="feature">
+
+                <strong>
+                    ✓ Cost Breakdown
+                </strong>
+
+                Track the major costs of each order
+
+            </div>
+
+
+            <div class="feature">
+
+                <strong>
+                    ✓ Beginner Friendly
+                </strong>
+
+                No advanced Excel skills required
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     WHAT'S INCLUDED
+====================================================== -->
+
+<section class="content-section">
+
+    <div class="section-label">
+        What's Included
+    </div>
+
+    <h2>
+        Everything you need to understand your dropshipping margins.
+    </h2>
+
+    <p>
+
+        Enter your product and business numbers into the
+        Excel calculator and quickly see how much revenue,
+        cost and profit you can expect from your dropshipping
+        orders.
+
+    </p>
+
+
+    <div class="included-grid">
+
+
+        <div class="included-item">
+
+            <div class="included-icon">
+                💰
+            </div>
+
+            <h3>
+                Selling Price
+            </h3>
+
+            <p>
+                Enter your product selling price and
+                calculate the revenue generated from each order.
+            </p>
+
+        </div>
+
+
+        <div class="included-item">
+
+            <div class="included-icon">
+                📦
+            </div>
+
+            <h3>
+                Product Cost
+            </h3>
+
+            <p>
+                Track supplier or product sourcing costs
+                associated with every sale.
+            </p>
+
+        </div>
+
+
+        <div class="included-item">
+
+            <div class="included-icon">
+                🚚
+            </div>
+
+            <h3>
+                Shipping Cost
+            </h3>
+
+            <p>
+                Include shipping and fulfillment expenses
+                when calculating your real margins.
+            </p>
+
+        </div>
+
+
+        <div class="included-item">
+
+            <div class="included-icon">
+                📣
+            </div>
+
+            <h3>
+                Advertising Cost
+            </h3>
+
+            <p>
+                Account for Facebook, Google, TikTok or
+                other advertising expenses.
+            </p>
+
+        </div>
+
+
+        <div class="included-item">
+
+            <div class="included-icon">
+                🧾
+            </div>
+
+            <h3>
+                Platform Fees
+            </h3>
+
+            <p>
+                Add marketplace, payment processing or
+                transaction fees to your calculation.
+            </p>
+
+        </div>
+
+
+        <div class="included-item">
+
+            <div class="included-icon">
+                📈
+            </div>
+
+            <h3>
+                Net Profit
+            </h3>
+
+            <p>
+                See the estimated profit remaining after
+                your major operating costs.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CALCULATOR FEATURES
+====================================================== -->
+
+<section class="content-section">
+
+    <div class="section-label">
+        Calculator Breakdown
+    </div>
+
+    <h2>
+        Understand where your dropshipping profit goes.
+    </h2>
+
+    <p>
+
+        The spreadsheet is designed to give you a clearer
+        picture of your economics before launching or
+        scaling a product.
+
+    </p>
+
+
+    <div class="calculator-list">
+
+
+        <div class="calculator-row">
+
+            <div class="calculator-number">
+                01
+            </div>
+
+            <div>
+
+                <h3>
+                    Revenue
+                </h3>
+
+                <p>
+                    Calculate total sales revenue based on
+                    your selling price and number of orders.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="calculator-row">
+
+            <div class="calculator-number">
+                02
+            </div>
+
+            <div>
+
+                <h3>
+                    Total Product Cost
+                </h3>
+
+                <p>
+                    Calculate the total amount spent on
+                    purchasing or sourcing products.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="calculator-row">
+
+            <div class="calculator-number">
+                03
+            </div>
+
+            <div>
+
+                <h3>
+                    Marketing & Advertising
+                </h3>
+
+                <p>
+                    Include your advertising budget and
+                    customer acquisition expenses.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="calculator-row">
+
+            <div class="calculator-number">
+                04
+            </div>
+
+            <div>
+
+                <h3>
+                    Other Expenses
+                </h3>
+
+                <p>
+                    Account for shipping, transaction fees,
+                    platform charges and other operating costs.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="calculator-row">
+
+            <div class="calculator-number">
+                05
+            </div>
+
+            <div>
+
+                <h3>
+                    Net Profit & Margin
+                </h3>
+
+                <p>
+                    Quickly identify your estimated net profit
+                    and understand whether your product margins
+                    are sustainable.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     WHO IT'S FOR
+====================================================== -->
+
+<section class="content-section">
+
+    <div class="section-label">
+        Who It's For
+    </div>
+
+    <h2>
+        Built for sellers who want to know the numbers before scaling.
+    </h2>
+
+    <p>
+
+        Whether you are researching your first product or
+        already running a dropshipping store, the calculator
+        provides a simple way to evaluate product profitability.
+
+    </p>
+
+
+    <div class="included-grid">
+
+
+        <div class="included-item">
+
+            <div class="included-icon">
+                🛒
+            </div>
+
+            <h3>
+                New Dropshippers
+            </h3>
+
+            <p>
+                Estimate whether a product can generate
+                enough profit before launching.
+            </p>
+
+        </div>
+
+
+        <div class="included-item">
+
+            <div class="included-icon">
+                📊
+            </div>
+
+            <h3>
+                Ecommerce Sellers
+            </h3>
+
+            <p>
+                Analyze your product economics and
+                improve pricing decisions.
+            </p>
+
+        </div>
+
+
+        <div class="included-item">
+
+            <div class="included-icon">
+                🚀
+            </div>
+
+            <h3>
+                Product Researchers
+            </h3>
+
+            <p>
+                Compare different products and identify
+                stronger potential profit opportunities.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     HOW IT WORKS
+====================================================== -->
+
+<section class="content-section">
+
+    <div class="section-label">
+        How It Works
+    </div>
+
+    <h2>
+        Enter your numbers. Let Excel calculate the rest.
+    </h2>
+
+    <p>
+
+        The spreadsheet is designed to keep the calculation
+        process simple so you can focus on choosing products,
+        pricing them correctly and controlling your costs.
+
+    </p>
+
+
+    <div class="calculator-list">
+
+
+        <div class="calculator-row">
+
+            <div class="calculator-number">
+                01
+            </div>
+
+            <div>
+
+                <h3>
+                    Enter Product Information
+                </h3>
+
+                <p>
+                    Add the product cost, selling price and
+                    expected number of orders.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="calculator-row">
+
+            <div class="calculator-number">
+                02
+            </div>
+
+            <div>
+
+                <h3>
+                    Add Business Expenses
+                </h3>
+
+                <p>
+                    Enter advertising, shipping, platform,
+                    transaction and other relevant costs.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="calculator-row">
+
+            <div class="calculator-number">
+                03
+            </div>
+
+            <div>
+
+                <h3>
+                    Review Your Profit
+                </h3>
+
+                <p>
+                    The spreadsheet calculates your estimated
+                    revenue, total costs, net profit and margin.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FINAL CTA
+====================================================== -->
+
+<section class="bottom-cta">
+
+    <div>
+
+        <h2>
+            Know your profit before you scale.
+        </h2>
+
+        <p>
+            Get the Dropshipping Profit Calculator Excel Tool for only ৳199.
+        </p>
+
+    </div>
+
+
+    <button
+        class="buy-button"
+        onclick="buyNow(
+            'DPC-001',
+            'Dropshipping Profit Calculator',
+            199
+        )"
+    >
+
+        GET IT NOW → ৳199
+
+    </button>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+<div class="footer-inner">
+
+
+    <div class="footer-brand">
+
+        <strong>
+            Nexus Mart BD
+        </strong>
+
+        <p>
+            Affordable digital tools, templates,
+            AI resources and business solutions.
+        </p>
+
+    </div>
+
+
+    <div class="footer-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="shop.html">
+            Shop
+        </a>
+
+        <a href="#">
+            Contact
+        </a>
+
+        <a href="#">
+            Privacy
+        </a>
+
+    </div>
+
+
+</div>
+
+</footer>
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div
+    class="toast"
+    id="toast"
+>
+    Added to cart ✓
+</div>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+
+/* =========================================================
+   CART
+========================================================= */
+
+let cart =
+    JSON.parse(
+        localStorage.getItem("cart")
+    ) || [];
+
+updateCartCount();
+
+
+/* =========================================================
+   ADD TO CART
+========================================================= */
+
+function addToCart(id, name, price) {
+
+    const existingProduct =
+        cart.find(
+            item => item.id === id
+        );
+
+    if (existingProduct) {
+
+        existingProduct.quantity += 1;
+
+    } else {
+
+        cart.push({
+
+            id: id,
+
+            name: name,
+
+            price: price,
+
+            quantity: 1
+
+        });
+
+    }
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+    updateCartCount();
+
+    showToast(
+        name + " added to cart ✓"
+    );
+
+}
+
+
+/* =========================================================
+   BUY NOW
+========================================================= */
+
+function buyNow(id, name, price) {
+
+    cart = [{
+
+        id: id,
+
+        name: name,
+
+        price: price,
+
+        quantity: 1
+
+    }];
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+    window.location.href =
+        "checkout.html";
+
+}
+
+
+/* =========================================================
+   CART COUNT
+========================================================= */
+
+function updateCartCount() {
+
+    const count =
+        cart.reduce(
+            (total, item) =>
+                total + item.quantity,
+            0
+        );
+
+    document
+        .getElementById("cartCount")
+        .textContent = count;
+
+}
+
+
+/* =========================================================
+   OPEN CART
+========================================================= */
+
+function openCart() {
+
+    window.location.href =
+        "cart.html";
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(message) {
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent =
+        message;
+
+    toast.classList.add(
+        "show"
+    );
+
+    setTimeout(
+        () => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        2200
+    );
+
+}
+
+</script>
+
+</body>
+</html>

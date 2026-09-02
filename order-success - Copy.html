@@ -176,7 +176,7 @@ h1 {
 .instructions {
     margin-top:25px;
 
-    padding:18px;
+    padding:15px;
 
     background:#0b0c0c;
 
@@ -191,138 +191,96 @@ h1 {
     line-height:1.7;
 }
 
-.instructions p {
-    margin-bottom:15px;
-}
-
-.instructions p:last-child {
-    margin-bottom:0;
-}
-
-.instructions strong {
-    color:white;
-}
-
-
-/* MOBILE */
-
-@media(max-width:600px) {
-
-    body {
-        padding:15px;
-    }
-
-    .box {
-        padding:25px 20px;
-    }
-
-    .detail-row {
-        gap:15px;
-    }
-
-    .detail-row span:last-child {
-        text-align:right;
-        word-break:break-word;
-    }
-
-}
-
 </style>
 
 </head>
 
 <body>
 
-
 <div class="box">
 
-
-<!-- SUCCESS ICON -->
-
 <div class="check">
-    ✓
+✓
 </div>
 
 
-<!-- TITLE -->
-
 <h1>
-    Order Received
+Order Received
 </h1>
 
 <p class="subtitle">
-    Your order has been successfully created.
+Your order has been successfully created.
 </p>
 
 
-<!-- ORDER ID -->
-
 <div class="order-id">
 
-    <small>
-        Order ID
-    </small>
+<small>
+Order ID
+</small>
 
-    <strong id="orderID">
-        AV-000000
-    </strong>
+<strong id="orderID">
+AV-000000
+</strong>
 
 </div>
 
-
-<!-- ORDER DETAILS -->
 
 <div class="details">
 
+<div class="detail-row">
 
-    <div class="detail-row">
+<span>
+Customer
+</span>
 
-        <span>
-            Customer
-        </span>
-
-        <span id="customerName">
-            -
-        </span>
-
-    </div>
-
-
-    <div class="detail-row">
-
-        <span>
-            WhatsApp
-        </span>
-
-        <span id="whatsapp">
-            -
-        </span>
-
-    </div>
-
-
-    <div class="detail-row">
-
-        <span>
-            Total
-        </span>
-
-        <span id="total">
-            -
-        </span>
-
-    </div>
-
-
-    <div class="detail-row">
-
-    </div>
-
+<span id="customerName">
+-
+</span>
 
 </div>
 
 
-<!-- WHATSAPP BUTTON -->
+<div class="detail-row">
+
+<span>
+WhatsApp
+</span>
+
+<span id="whatsapp">
+-
+</span>
+
+</div>
+
+
+<div class="detail-row">
+
+<span>
+Total
+</span>
+
+<span id="total">
+-
+</span>
+
+</div>
+
+
+<div class="detail-row">
+
+<span>
+Payment
+</span>
+
+<span>
+PENDING
+</span>
+
+</div>
+
+</div>
+
 
 <a
     href="#"
@@ -330,107 +288,45 @@ h1 {
     class="whatsapp"
     target="_blank"
 >
-    VERIFY PAYMENT ON WHATSAPP →
+    VERIFY PAYMENT ON WHATSAPP → +880-1980-9118-75
 </a>
 
-
-<!-- HOME -->
 
 <a
     href="index.html"
     class="home"
 >
-    ← Return to Nexus Mart BD
+    ← Return to  Nexus Mart BD
 </a>
 
 
-<!-- PAYMENT INSTRUCTIONS -->
-
 <div class="instructions">
 
+<strong style="color:white;">
+Next step:
+</strong>
 
-    <p>
+<br>
 
-        <strong>
-            1. Check Your Order
-        </strong>
+Make your payment using the payment method
+provided by Nexus Mart BD, then send your
+payment transaction ID through WhatsApp.
 
-        <br>
-
-        Your order has been successfully created.
-        Please keep your Order ID for reference.
-
-    </p>
-
-
-    <p>
-
-        <strong>
-            2. Make Payment
-        </strong>
-
-        <br>
-
-        Complete the payment through bKash (Send Money) to
-
-        <strong>
-            +880 1760 506160
-        </strong>.
-
-    </p>
-
-
-    <p>
-
-        <strong>
-            3. Send Payment Proof
-        </strong>
-
-        <br>
-
-        Take a screenshot of the successful payment
-        and send it along with your Order ID through WhatsApp.
-
-    </p>
-
-
-    <p>
-
-        <strong>
-            4. Payment Verification
-        </strong>
-
-        <br>
-
-        Our team will verify your payment.
-        Your product will be delivered
-        after successful payment verification.
-
-    </p>
-
+Your digital product will be delivered after
+payment verification.
 
 </div>
-
 
 </div>
 
 
 <script>
 
-
-/*
-   GET LAST ORDER
-*/
-
 const order =
 JSON.parse(
     localStorage.getItem("lastOrder")
 );
 
-
-/*
-   IF NO ORDER EXISTS
-*/
 
 if (!order) {
 
@@ -439,10 +335,6 @@ if (!order) {
 
 }
 
-
-/*
-   DISPLAY ORDER INFORMATION
-*/
 
 document.getElementById("orderID")
     .textContent = order.orderID;
@@ -457,31 +349,23 @@ document.getElementById("whatsapp")
 
 
 document.getElementById("total")
-    .textContent =
-        "৳" + order.total;
+    .textContent = "৳" + order.total;
 
 
 
 /*
-   YOUR NEXUS MART BD
-   WHATSAPP NUMBER
+   CHANGE THIS NUMBER TO
+   YOUR Nexus Mart WHATSAPP NUMBER.
 
-   International format:
-   880 + number
-   No +, spaces or dashes
+   Example:
+   8801712345678
 */
 
 const YOUR_WHATSAPP =
     "8801980911875";
 
 
-
-/*
-   CREATE PRODUCT LIST
-*/
-
 let productList = "";
-
 
 order.products.forEach(item => {
 
@@ -489,15 +373,10 @@ order.products.forEach(item => {
         item.name +
         " x " +
         item.quantity +
-        "\n";
+        "\\n";
 
 });
 
-
-
-/*
-   WHATSAPP MESSAGE
-*/
 
 const message =
 `Hello,
@@ -506,24 +385,17 @@ I have placed an order.
 
 Order ID: ${order.orderID}
 
-Customer: ${order.customerName}
-
 Products:
 ${productList}
 
 Total: ৳${order.total}
 
-I have completed the bKash payment.
+I have completed the payment.
 
 Please verify my payment.
 
 Thank you.`;
 
-
-
-/*
-   CREATE WHATSAPP URL
-*/
 
 const whatsappURL =
     "https://wa.me/" +
@@ -532,11 +404,6 @@ const whatsappURL =
     encodeURIComponent(message);
 
 
-
-/*
-   CONNECT WHATSAPP BUTTON
-*/
-
 document.getElementById(
     "whatsappButton"
 ).href = whatsappURL;
@@ -544,15 +411,12 @@ document.getElementById(
 
 
 /*
-   CLEAR CART
-   AFTER SUCCESSFUL ORDER
+   Clear cart after successful order.
 */
 
 localStorage.removeItem("cart");
 
-
 </script>
-
 
 </body>
 
